@@ -7,6 +7,7 @@ const secondInput = document.getElementById("set-seconds");
 const timerStart = document.querySelector(".timer-start");
 const timerStop = document.querySelector(".timer-stop");
 const timerPause = document.querySelector(".timer-pause");
+const timerAudio = document.getElementById("timer-audio");
 
 hourInput.addEventListener("input", e => {
     if (e.target.value.length === 1) {
@@ -76,8 +77,7 @@ function startTimer() {
                     updateDisplay(sec, seconds);
                     updateDisplay(min, minutes);
                 } else {
-                    let timerCompleteSong = new Audio("../assets/tones/Alarm05.wav");
-                    timerCompleteSong.play();
+                    timerAudio.play();
 
                     for (let i = 0; i < 999999; i++) {
                         clearInterval(i);
