@@ -9,6 +9,6 @@ This is a countdown timer project built using HTML, CSS and JavaScript
 - To pause the timer, press `P` or use the pause button. To resume the timer, follow the previous step
 - To Stop the timer, press `X` or use the stop button.
 
-**Note:** First bring focus to the range slider then use the left or right arrow keys to have choose values with finesse.
+**Note:** First bring focus to the range slider then use the left or right arrow keys to choose values with finesse.
 
 **Live project link:** [Countdown timer](https://ayushknath.github.io/countdown-timer)
