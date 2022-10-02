@@ -146,16 +146,6 @@ button:hover {
   .timer-ctrls {
     width: 70%;
   }
-
-  /* KEYBOARD SHORTCUTS INFO BUTTON */
-  .key-info {
-    display: none;
-  }
-
-  /* MODAL */
-  .key-info-modal {
-    display: none;
-  }
 }
 
 @media (max-width: 650px) {
@@ -172,7 +162,7 @@ button:hover {
 
   /* TIMER VALUE INPUT */
   .timer-value-input {
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
     flex-direction: column;
   }
