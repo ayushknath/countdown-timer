@@ -58,6 +58,14 @@ button:hover {
   text-align: center;
 }
 
+.timer-display .separator {
+  margin: 0 0.5rem;
+}
+
+.timer-display .time-unit {
+  font-size: 3rem;
+}
+
 /* TIMER CONTROLS */
 .timer-ctrls {
   width: 50%;
@@ -151,7 +159,15 @@ button:hover {
 @media (max-width: 650px) {
   /* TIMER DISPLAY */
   .timer-display {
-    font-size: 4rem;
+    font-size: 3rem;
+  }
+
+  .timer-display .separator {
+    margin: 0 2px;
+  }
+
+  .timer-display .time-unit {
+    font-size: 2rem;
   }
 
   /* TIMER CONTROLS */

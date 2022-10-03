@@ -11,34 +11,38 @@ const timerAudio = document.getElementById("timer-audio");
 
 hourInput.addEventListener("input", e => {
     if (e.target.value.length === 1) {
-        hours.innerHTML = `0${e.target.value}`;
+        hours.innerHTML = `0${e.target.value}<span class="time-unit">H</span>`;
     } else {
-        hours.innerHTML = e.target.value;
+        hours.innerHTML = `${e.target.value}<span class="time-unit">H</span>`;
     }
 });
 
 minuteInput.addEventListener("input", e => {
     if (e.target.value.length === 1) {
-        minutes.innerHTML = `0${e.target.value}`;
+        minutes.innerHTML = `0${e.target.value}<span class="time-unit">M</span>`;
     } else {
-        minutes.innerHTML = e.target.value;
+        minutes.innerHTML = `${e.target.value}<span class="time-unit">M</span>`;
     }
 });
 
 secondInput.addEventListener("input", e => {
     if (e.target.value.length === 1) {
-        seconds.innerHTML = `0${e.target.value}`;
+        seconds.innerHTML = `0${e.target.value}<span class="time-unit">S</span>`;
     } else {
-        seconds.innerHTML = e.target.value;
+        seconds.innerHTML = `${e.target.value}<span class="time-unit">S</span>`;
     }
 });
 
 // UPDATE TIMER DISPLAY
 function updateDisplay(entity, element) {
     if (String(entity).length === 1) {
-        element.innerHTML = `0${entity}`;
+        if (element.classList.contains("hours")) element.innerHTML = `0${entity}<span class="time-unit">H</span>`;
+        else if (element.classList.contains("minutes")) element.innerHTML = `0${entity}<span class="time-unit">M</span>`;
+        else element.innerHTML = `0${entity}<span class="time-unit">S</span>`;
     } else {
-        element.innerHTML = String(entity);
+        if (element.classList.contains("hours")) element.innerHTML = `${entity}<span class="time-unit">H</span>`;
+        else if (element.classList.contains("minutes")) element.innerHTML = `${entity}<span class="time-unit">M</span>`;
+        else element.innerHTML = `${entity}<span class="time-unit">S</span>`;
     }
 }
 
@@ -137,9 +141,9 @@ function stopTimer() {
     hourInput.value = 0;
     minuteInput.value = 0;
     secondInput.value = 0;
-    hours.innerHTML = "00";
-    minutes.innerHTML = "00";
-    seconds.innerHTML = "00";
+    hours.innerHTML = "00<span class=\"time-unit\">H</span>";
+    minutes.innerHTML = "00<span class=\"time-unit\">M</span>";
+    seconds.innerHTML = "00<span class=\"time-unit\">S</span>";
 
     for (let i = 0; i < 999999; i++) {
         clearInterval(i);
