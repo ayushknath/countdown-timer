@@ -7,27 +7,10 @@ const minuteInput = document.getElementById("minutes-input");
 const secondInput = document.getElementById("seconds-input");
 const timeUps = Array.from(document.querySelectorAll(".time-up"));
 const timeDowns = Array.from(document.querySelectorAll(".time-down"));
-const timerStart = document.querySelector(".timer-start");
+const timerStarts = Array.from(document.querySelectorAll(".timer-start"));
 const timerStop = document.querySelector(".timer-stop");
 const timerPause = document.querySelector(".timer-pause");
 const timerAudio = document.getElementById("timer-audio");
-
-function checkInputLength() {
-    if (hourInput.value.length === 1) {
-        hourInput.value = `0${hourInput.value}`;
-    }
-
-    if (minuteInput.value.length === 1) {
-        minuteInput.value = `0${minuteInput.value}`;
-    }
-
-    if (secondInput.value.length === 1) {
-        secondInput.value = `0${secondInput.value}`;
-    }
-}
-
-// CHECK FOR INPUT LENGTH EVERY 0.1ms
-setInterval(checkInputLength, 100);
 
 // DISPLAY THE INPUT PANEL WHEN THESE ELEMENTS ARE CLICKED
 hours.addEventListener("click", () => {
@@ -50,7 +33,6 @@ timeUps.forEach(timeUp => {
         } else if (timeUp.parentElement.classList.contains("set-seconds") && parseInt(secondInput.value) < 59) {
             secondInput.value = `${parseInt(secondInput.value) + 1}`;
         }
-        checkInputLength();
     });
 })
 
@@ -64,7 +46,6 @@ timeDowns.forEach(timeDowns => {
         } else if (timeDowns.parentElement.classList.contains("set-seconds") && parseInt(secondInput.value) > 0) {
             secondInput.value = `${parseInt(secondInput.value) - 1}`;
         }
-        checkInputLength();
     });
 })
 
@@ -81,15 +62,33 @@ function updateDisplay(entity, element) {
     }
 }
 
-// SET TIMER
-document.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-        updateDisplay(hourInput.value, hours);
-        updateDisplay(minuteInput.value, minutes);
-        updateDisplay(secondInput.value, seconds);
-        timerInput.classList.remove("show-input-panel");
+// CHECKS
+function checks() {
+    if (!isNaN(parseInt(hourInput.value)) && !isNaN(parseInt(minuteInput.value)) && !isNaN(parseInt(secondInput.value))) {
+        if (parseInt(hourInput.value) > 23 || parseInt(hourInput.value) < 0) {
+            alert("Hours should be within 0-23");
+            return false;
+        }
+        else if (parseInt(minuteInput.value) > 59 || parseInt(minuteInput.value) < 0) {
+            alert("Minutes should be within 0-59");
+            return false;
+        }
+        else if (parseInt(secondInput.value) > 59 || parseInt(secondInput.value) < 0) {
+            alert("Seconds should be within 0-59");
+            return false;
+        }
+        else {
+            updateDisplay(hourInput.value, hours);
+            updateDisplay(minuteInput.value, minutes);
+            updateDisplay(secondInput.value, seconds);
+            return true;
+        }
     }
-});
+    else {
+        alert("Not a valid number!");
+        return false;
+    }
+}
 
 // START TIMER
 function startTimer() {
@@ -100,8 +99,10 @@ function startTimer() {
     if (hr == 0 && min == 0 && sec == 0)
         return;
 
-    timerStart.removeEventListener("click", startTimer);
-    timerStart.classList.add("disabled");
+    timerStarts.forEach(timerStart => {
+        timerStart.removeEventListener("click", startTimer);
+    })
+    timerStarts[1].classList.add("disabled");
     timerPause.classList.remove("disabled");
     hourInput.setAttribute("disabled", "true");
     minuteInput.setAttribute("disabled", "true");
@@ -132,8 +133,10 @@ function startTimer() {
                         clearInterval(i);
                     }
 
-                    timerStart.addEventListener("click", startTimer);
-                    timerStart.classList.remove("disabled");
+                    timerStarts.forEach(timerStart => {
+                        timerStart.addEventListener("click", startTimer);
+                    })
+                    timerStarts[1].classList.remove("disabled");
                     hourInput.removeAttribute("disabled");
                     minuteInput.removeAttribute("disabled");
                     secondInput.removeAttribute("disabled");
@@ -146,18 +149,30 @@ function startTimer() {
     }, 1000);
 }
 
-timerStart.addEventListener("click", startTimer);
+timerStarts.forEach(timerStart => {
+    timerStart.addEventListener("click", () => {
+        if (checks()) {
+            startTimer();
+            timerInput.classList.remove("show-input-panel");
+        }
+
+    });
+})
 document.addEventListener("keydown", e => {
-    if (e.key === ' ')
+    if (e.key === "Enter" && !timerStarts[1].classList.contains("disabled") && checks()) {
         startTimer();
+        timerInput.classList.remove("show-input-panel");
+    }
 });
 
 // PAUSE TIMER
 function pauseTimer() {
-    if (timerStart.classList.contains("disabled")) {
-        timerStart.classList.remove("disabled");
+    if (timerStarts[1].classList.contains("disabled")) {
+        timerStarts[1].classList.remove("disabled");
         timerPause.classList.add("disabled");
-        timerStart.addEventListener("click", startTimer);
+        timerStarts.forEach(timerStart => {
+            timerStart.removeEventListener("click", startTimer);
+        })
         hourInput.removeAttribute("disabled");
         minuteInput.removeAttribute("disabled");
         secondInput.removeAttribute("disabled");
@@ -177,8 +192,10 @@ document.addEventListener("keydown", e => {
 
 // STOP TIMER
 function stopTimer() {
-    timerStart.addEventListener("click", startTimer);
-    timerStart.classList.remove("disabled");
+    timerStarts.forEach(timerStart => {
+        timerStart.removeEventListener("click", startTimer);
+    })
+    timerStarts[1].classList.remove("disabled");
     timerPause.classList.remove("disabled");
     hourInput.removeAttribute("disabled");
     minuteInput.removeAttribute("disabled");
