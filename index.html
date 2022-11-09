@@ -21,26 +21,34 @@
 
             <!-- TIMER INPUT -->
             <div class="timer-input">
-                <div class="set-hours">
-                    <button type="button" class="time-up set-timer-ctrls"><i class="fa-solid fa-angle-up"></i></button>
-                    <input type="number" id="hours-input" min="0" max="23" step="1" value="0" autofocus />
-                    <button type="button" class="time-down set-timer-ctrls"><i
-                            class="fa-solid fa-angle-down"></i></button>
-                    <span>Hours</span>
+                <div>
+                    <div class="set-hours">
+                        <button type="button" class="time-up set-timer-ctrls"><i
+                                class="fa-solid fa-angle-up"></i></button>
+                        <input type="number" id="hours-input" min="0" max="23" step="1" value="0" autofocus />
+                        <button type="button" class="time-down set-timer-ctrls"><i
+                                class="fa-solid fa-angle-down"></i></button>
+                        <span>Hours</span>
+                    </div>
+                    <div class="set-minutes">
+                        <button type="button" class="time-up set-timer-ctrls"><i
+                                class="fa-solid fa-angle-up"></i></button>
+                        <input type="number" id="minutes-input" min="0" max="59" step="1" value="0" />
+                        <button type="button" class="time-down set-timer-ctrls"><i
+                                class="fa-solid fa-angle-down"></i></button>
+                        <span>Minutes</span>
+                    </div>
+                    <div class="set-seconds">
+                        <button type="button" class="time-up set-timer-ctrls"><i
+                                class="fa-solid fa-angle-up"></i></button>
+                        <input type="number" id="seconds-input" min="0" max="59" step="1" value="0" />
+                        <button type="button" class="time-down set-timer-ctrls"><i
+                                class="fa-solid fa-angle-down"></i></button>
+                        <span>Seconds</span>
+                    </div>
                 </div>
-                <div class="set-minutes">
-                    <button type="button" class="time-up set-timer-ctrls"><i class="fa-solid fa-angle-up"></i></button>
-                    <input type="number" id="minutes-input" min="0" max="59" step="1" value="0" />
-                    <button type="button" class="time-down set-timer-ctrls"><i
-                            class="fa-solid fa-angle-down"></i></button>
-                    <span>Minutes</span>
-                </div>
-                <div class="set-seconds">
-                    <button type="button" class="time-up set-timer-ctrls"><i class="fa-solid fa-angle-up"></i></button>
-                    <input type="number" id="seconds-input" min="0" max="59" step="1" value="0" />
-                    <button type="button" class="time-down set-timer-ctrls"><i
-                            class="fa-solid fa-angle-down"></i></button>
-                    <span>Seconds</span>
+                <div>
+                    <button type="button" class="btn timer-start">Start timer</button>
                 </div>
             </div>
         </section>

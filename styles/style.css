@@ -82,20 +82,26 @@ button:hover {
 
 .timer-input.show-input-panel {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.timer-input > div {
+.timer-input > div:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.timer-input > div:first-child > div {
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
 }
 
-.timer-input > div:last-child {
+.timer-input > div:first-child > div:last-child {
   margin-right: 0;
 }
 
-.timer-input > div > input[type="number"] {
+.timer-input > div:first-child input[type="number"] {
   padding: 0.5rem;
   color: #fff;
   font-size: 2.5rem;
@@ -107,17 +113,17 @@ button:hover {
   background-color: #000;
 }
 
-.timer-input > div > input[type="number"]::-webkit-inner-spin-button {
+.timer-input > div:first-child input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.timer-input > div > input[type="number"]:focus {
+.timer-input > div:first-child input[type="number"]:focus {
   outline-color: #7f7f7f;
 }
 
-.timer-input > div > .set-timer-ctrls {
+.timer-input > div:first-child .set-timer-ctrls {
   margin: 0.5rem 0;
   padding: 0.5rem;
   color: #fff;
@@ -126,17 +132,35 @@ button:hover {
   background-color: transparent;
 }
 
-.timer-input > div > .set-timer-ctrls:hover {
+.timer-input > div:first-child .set-timer-ctrls:hover {
   background-color: #2f2f2f;
 }
 
-.timer-input > div > .set-timer-ctrls:active {
+.timer-input > div:first-child .set-timer-ctrls:active {
   background-color: #333;
 }
 
-.timer-input > div > span {
+.timer-input > div:first-child span {
   margin-top: 1rem;
   text-align: center;
+}
+
+.timer-input > div:last-child button {
+  margin-top: 2rem;
+  padding: 0.875rem 2rem;
+  color: #fff;
+  border-color: #fff;
+  border-radius: 0.5rem;
+  transition: var(--transition-time) all;
+}
+
+.timer-input > div:last-child button:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+.timer-input > div:last-child button:active {
+  transform: scale(0.94);
 }
 
 /* TIMER CONTROLS */
@@ -228,31 +252,33 @@ button:hover {
     font-size: 2rem;
   }
 
+  /* TIMER INPUT */
+  .timer-input {
+    max-width: 580px;
+    padding: 1rem 2rem;
+  }
+
+  .timer-input > div:first-child > div {
+    margin-right: 1rem;
+  }
+
+  .timer-input > div:first-child input[type="number"] {
+    padding: 5px;
+    font-size: 2rem;
+  }
+
+  .timer-input > div:first-child span {
+    margin-top: 0.5rem;
+  }
+
+  .timer-input > div:last-child button {
+    padding: 0.75rem 2rem;
+  }
+
   /* TIMER CONTROLS */
   .timer-ctrls .btn {
     width: 3.5rem;
     height: 3.5rem;
-  }
-
-  /* TIMER VALUE INPUT */
-  .timer-value-input {
-    width: 90%;
-    margin: 0 auto;
-    flex-direction: column;
-  }
-
-  .timer-value-input > div:not(:last-child) {
-    margin-right: 0;
-    margin-bottom: 2rem;
-  }
-
-  .timer-value-input > div {
-    width: 100%;
-  }
-
-  .timer-value-input input[type="range"] {
-    display: block;
-    width: 100%;
   }
 }
 
