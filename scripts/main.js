@@ -1,37 +1,72 @@
 const hours = document.querySelector(".hours");
 const minutes = document.querySelector(".minutes");
 const seconds = document.querySelector(".seconds");
-const hourInput = document.getElementById("set-hours");
-const minuteInput = document.getElementById("set-minutes");
-const secondInput = document.getElementById("set-seconds");
+const timerInput = document.querySelector(".timer-input");
+const hourInput = document.getElementById("hours-input");
+const minuteInput = document.getElementById("minutes-input");
+const secondInput = document.getElementById("seconds-input");
+const timeUps = Array.from(document.querySelectorAll(".time-up"));
+const timeDowns = Array.from(document.querySelectorAll(".time-down"));
 const timerStart = document.querySelector(".timer-start");
 const timerStop = document.querySelector(".timer-stop");
 const timerPause = document.querySelector(".timer-pause");
 const timerAudio = document.getElementById("timer-audio");
 
-hourInput.addEventListener("input", e => {
-    if (e.target.value.length === 1) {
-        hours.innerHTML = `0${e.target.value}<span class="time-unit">H</span>`;
-    } else {
-        hours.innerHTML = `${e.target.value}<span class="time-unit">H</span>`;
+function checkInputLength() {
+    if (hourInput.value.length === 1) {
+        hourInput.value = `0${hourInput.value}`;
     }
+
+    if (minuteInput.value.length === 1) {
+        minuteInput.value = `0${minuteInput.value}`;
+    }
+
+    if (secondInput.value.length === 1) {
+        secondInput.value = `0${secondInput.value}`;
+    }
+}
+
+// CHECK FOR INPUT LENGTH EVERY 0.1ms
+setInterval(checkInputLength, 100);
+
+// DISPLAY THE INPUT PANEL WHEN THESE ELEMENTS ARE CLICKED
+hours.addEventListener("click", () => {
+    timerInput.classList.add("show-input-panel");
+});
+minutes.addEventListener("click", () => {
+    timerInput.classList.add("show-input-panel");
+});
+seconds.addEventListener("click", () => {
+    timerInput.classList.add("show-input-panel");
 });
 
-minuteInput.addEventListener("input", e => {
-    if (e.target.value.length === 1) {
-        minutes.innerHTML = `0${e.target.value}<span class="time-unit">M</span>`;
-    } else {
-        minutes.innerHTML = `${e.target.value}<span class="time-unit">M</span>`;
-    }
-});
+// INCREASE VALUE IN INPUT PANEL
+timeUps.forEach(timeUp => {
+    timeUp.addEventListener("click", () => {
+        if (timeUp.parentElement.classList.contains("set-hours") && parseInt(hourInput.value) < 23) {
+            hourInput.value = `${parseInt(hourInput.value) + 1}`;
+        } else if (timeUp.parentElement.classList.contains("set-minutes") && parseInt(minuteInput.value) < 59) {
+            minuteInput.value = `${parseInt(minuteInput.value) + 1}`;
+        } else if (timeUp.parentElement.classList.contains("set-seconds") && parseInt(secondInput.value) < 59) {
+            secondInput.value = `${parseInt(secondInput.value) + 1}`;
+        }
+        checkInputLength();
+    });
+})
 
-secondInput.addEventListener("input", e => {
-    if (e.target.value.length === 1) {
-        seconds.innerHTML = `0${e.target.value}<span class="time-unit">S</span>`;
-    } else {
-        seconds.innerHTML = `${e.target.value}<span class="time-unit">S</span>`;
-    }
-});
+// DECREASE VALUE IN INPUT PANEL
+timeDowns.forEach(timeDowns => {
+    timeDowns.addEventListener("click", () => {
+        if (timeDowns.parentElement.classList.contains("set-hours") && parseInt(hourInput.value) > 0) {
+            hourInput.value = `${parseInt(hourInput.value) - 1}`;
+        } else if (timeDowns.parentElement.classList.contains("set-minutes") && parseInt(minuteInput.value) > 0) {
+            minuteInput.value = `${parseInt(minuteInput.value) - 1}`;
+        } else if (timeDowns.parentElement.classList.contains("set-seconds") && parseInt(secondInput.value) > 0) {
+            secondInput.value = `${parseInt(secondInput.value) - 1}`;
+        }
+        checkInputLength();
+    });
+})
 
 // UPDATE TIMER DISPLAY
 function updateDisplay(entity, element) {
@@ -45,6 +80,16 @@ function updateDisplay(entity, element) {
         else element.innerHTML = `${entity}<span class="time-unit">S</span>`;
     }
 }
+
+// SET TIMER
+document.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+        updateDisplay(hourInput.value, hours);
+        updateDisplay(minuteInput.value, minutes);
+        updateDisplay(secondInput.value, seconds);
+        timerInput.classList.remove("show-input-panel");
+    }
+});
 
 // START TIMER
 function startTimer() {

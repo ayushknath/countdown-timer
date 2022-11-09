@@ -4,6 +4,7 @@
   --blue: #0995fa;
   --red: #f0310b;
   --yellow: #f6e608;
+  --transition-time: 0.15s;
 }
 
 * {
@@ -27,7 +28,6 @@ body {
 .container {
   width: 768px;
   margin: 0 auto;
-  /* outline: 1px solid white; */
 }
 
 /* BUTTONS */
@@ -66,6 +66,79 @@ button:hover {
   font-size: 3rem;
 }
 
+/* TIMER INPUT */
+.timer-input {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  max-width: 580px;
+  display: none;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  background-color: #1f1f1f;
+}
+
+.timer-input.show-input-panel {
+  display: flex;
+  align-items: center;
+}
+
+.timer-input > div {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+
+.timer-input > div:last-child {
+  margin-right: 0;
+}
+
+.timer-input > div > input[type="number"] {
+  padding: 0.5rem;
+  color: #fff;
+  font-size: 2.5rem;
+  font-family: inherit;
+  text-align: center;
+  border: 0;
+  border-radius: 0.5rem;
+  outline: 2px solid #3f3f3f;
+  background-color: #000;
+}
+
+.timer-input > div > input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.timer-input > div > input[type="number"]:focus {
+  outline-color: #7f7f7f;
+}
+
+.timer-input > div > .set-timer-ctrls {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  color: #fff;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: transparent;
+}
+
+.timer-input > div > .set-timer-ctrls:hover {
+  background-color: #2f2f2f;
+}
+
+.timer-input > div > .set-timer-ctrls:active {
+  background-color: #333;
+}
+
+.timer-input > div > span {
+  margin-top: 1rem;
+  text-align: center;
+}
+
 /* TIMER CONTROLS */
 .timer-ctrls {
   width: 50%;
@@ -83,7 +156,7 @@ button:hover {
   justify-content: center;
   font-size: 1.5rem;
   border-radius: 50%;
-  transition: 0.15s all;
+  transition: var(--transition-time) all;
 }
 
 .timer-ctrls .btn:active {
@@ -127,21 +200,6 @@ button:hover {
   background-color: #222;
   color: #555;
   transform: none;
-}
-
-/* TIMER VALUE INPUT */
-.timer-value-input {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.timer-value-input > div:not(:last-child) {
-  margin-right: 2rem;
-}
-
-.timer-value-input input[type="range"] {
-  display: block;
 }
 
 /* MEDIA QUERIES */
