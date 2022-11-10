@@ -22,27 +22,27 @@
             <!-- TIMER INPUT -->
             <div class="timer-input">
                 <div>
-                    <div class="set-hours">
-                        <button type="button" class="time-up set-timer-ctrls"><i
+                    <div class="hours-input-grp">
+                        <button type="button" class="arrow-up set-timer-ctrls"><i
                                 class="fa-solid fa-angle-up"></i></button>
                         <input type="number" id="hours-input" min="0" max="23" step="1" value="0" autofocus />
-                        <button type="button" class="time-down set-timer-ctrls"><i
+                        <button type="button" class="arrow-down set-timer-ctrls"><i
                                 class="fa-solid fa-angle-down"></i></button>
                         <span>Hours</span>
                     </div>
-                    <div class="set-minutes">
-                        <button type="button" class="time-up set-timer-ctrls"><i
+                    <div class="minutes-input-grp">
+                        <button type="button" class="arrow-up set-timer-ctrls"><i
                                 class="fa-solid fa-angle-up"></i></button>
                         <input type="number" id="minutes-input" min="0" max="59" step="1" value="0" />
-                        <button type="button" class="time-down set-timer-ctrls"><i
+                        <button type="button" class="arrow-down set-timer-ctrls"><i
                                 class="fa-solid fa-angle-down"></i></button>
                         <span>Minutes</span>
                     </div>
-                    <div class="set-seconds">
-                        <button type="button" class="time-up set-timer-ctrls"><i
+                    <div class="seconds-input-grp">
+                        <button type="button" class="arrow-up set-timer-ctrls"><i
                                 class="fa-solid fa-angle-up"></i></button>
                         <input type="number" id="seconds-input" min="0" max="59" step="1" value="0" />
-                        <button type="button" class="time-down set-timer-ctrls"><i
+                        <button type="button" class="arrow-down set-timer-ctrls"><i
                                 class="fa-solid fa-angle-down"></i></button>
                         <span>Seconds</span>
                     </div>
@@ -64,7 +64,9 @@
         Your browser does not support audio playback
     </audio>
 
-    <script src="scripts/main.js"></script>
+    <script type="module" src="scripts/entities.js"></script>
+    <script type="module" src="scripts/actions.js"></script>
+    <script type="module" src="scripts/script.js"></script>
 </body>
 
 </html>
