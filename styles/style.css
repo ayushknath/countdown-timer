@@ -177,18 +177,23 @@ button:hover {
   margin: 0 auto 5rem;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .timer-ctrls .btn {
   width: 4.3rem;
   height: 4.3rem;
+  margin-right: 2em;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   border-radius: 50%;
   transition: var(--transition-time) all;
+}
+
+.timer-ctrls .btn:last-child {
+  margin-right: 0;
 }
 
 .timer-ctrls .btn:active {
