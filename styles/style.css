@@ -69,10 +69,6 @@ button:hover {
   margin: 0 0.5rem;
 }
 
-.timer-display .time-unit {
-  font-size: 3rem;
-}
-
 /* TIMER INPUT */
 .timer-input {
   position: fixed;
@@ -221,6 +217,7 @@ button:hover {
 }
 
 .timer-ctrls .timer-pause {
+  display: none;
   color: var(--yellow);
   border-color: var(--yellow);
 }
@@ -259,10 +256,6 @@ button:hover {
 
   .timer-display .separator {
     margin: 0 2px;
-  }
-
-  .timer-display .time-unit {
-    font-size: 2rem;
   }
 
   /* TIMER INPUT */
