@@ -24,9 +24,7 @@ function hideInputPanel(e) {
             return;
     }
 
-    // HIDE INPUT PANEL
     entities.timerInputPanel.classList.remove("show-input-panel");
-    // REMOVE EVENT LISTENER
     document.body.removeEventListener("click", hideInputPanel);
 }
 
