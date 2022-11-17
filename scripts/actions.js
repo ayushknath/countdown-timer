@@ -76,8 +76,6 @@ function finishCountdown(isComplete = false) {
     entities.hourInput.value = '0';
     entities.minuteInput.value = '0';
     entities.secondInput.value = '0';
-
-    isTimerSet = false;
 }
 
 function startCountdown() {
@@ -109,6 +107,7 @@ function stopCountdown() {
     entities.hourDisplay.innerHTML = '0';
     entities.minuteDisplay.innerHTML = '0';
     entities.secondDisplay.innerHTML = '0';
+    isTimerSet = false;
     finishCountdown();
 }
 
